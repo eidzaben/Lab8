@@ -1,20 +1,26 @@
-
 public class GamePieceAppearance
 {
+    // Instance variables
     private Shape shape;
     private Color color;
-    
-    public GamePieceAppearance(Color color, Shape shape) {
+
+    // Constructor with color and shape
+    public GamePieceAppearance(Color color, Shape shape)
+    {
+        // Setting parameters equal to instance variables
         this.color = color;
         this.shape = shape;
     }
-   
-    
-    public Color getColor() {
+
+    // Getter to get color
+    public Color getColor()
+    {
         return color;
     }
-    
-    public Shape getShape() {
+
+    // Getter to get shape
+    public Shape getShape()
+    {
         return shape;
     }
 }
