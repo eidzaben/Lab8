@@ -1,25 +1,35 @@
 public enum Color
 {
-        RED(255,0,0), GREEN(0, 255, 0), BLUE(0, 0, 255), CYAN(0,255, 255), MAGENTA(255, 0, 255), YELLOW(255, 255, 0);
-    
+    // Setting enums for possible colors
+    RED(255, 0, 0), GREEN(0, 255, 0), BLUE(0, 0, 255), CYAN(0, 255, 255), MAGENTA(255, 0, 255), YELLOW(255, 255, 0);
+
+    // Declaring int values for colors
     private int r, g, b;
 
-    private Color(int r, int g, int b) {
-  
+    // Constructor for each color
+    private Color(int r, int g, int b)
+    {
+
         this.r = r;
         this.g = g;
         this.b = b;
     }
-    
-    public int getR() {
+
+    // Getter for red
+    public int getR()
+    {
         return r;
     }
-    
-    public int getB() {
+
+    // Getter for blue
+    public int getB()
+    {
         return b;
     }
-    
-    public int getG() {
+
+    // Getter for green
+    public int getG()
+    {
         return g;
     }
 }
