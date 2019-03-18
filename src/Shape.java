@@ -1,8 +1,11 @@
 public enum Shape
 {
+    // Possible shape enums
     THIMBLE, BOOT, RACECAR;
-    
-    public String toString() {
-       return this.name().toLowerCase();
+
+    // toString overridden returning lowercase name
+    public String toString()
+    {
+        return this.name().toLowerCase();
     }
 }
