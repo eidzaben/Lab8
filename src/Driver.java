@@ -4,6 +4,14 @@ import org.junit.Test;
 public class Driver
 {
 
+    /*
+     * TESTS CHECKLIST Shape Enum DONE 
+     * Location Enum DONE 
+     * Color enum DONE
+     * GamePieceAppearance DONE
+     * GamePiece 
+     * BoardGame
+     */
     public static void main(String[] args)
     {
         // TODO Auto-generated method stub
@@ -73,6 +81,18 @@ public class Driver
     public void testShapeToString()
     {
         Assert.assertEquals("Shape toString incorrect . ", "thimble", Shape.THIMBLE.toString());
+        Assert.assertEquals("Shape toString incorrect . ", "boot", Shape.BOOT.toString());
+        Assert.assertEquals("Shape toString incorrect . ", "racecar", Shape.RACECAR.toString());
+    }
+
+    @Test
+    public void testGamePieceAppearance()
+    {
+        GamePieceAppearance ex = new GamePieceAppearance(Color.RED, Shape.THIMBLE);
+        Assert.assertEquals("GPA getColor incorrect", ex.getColor(), Color.RED);
+        Assert.assertEquals("GPA getShape incorrect", ex.getShape(), Shape.THIMBLE);
+        
+        
     }
 
 }
