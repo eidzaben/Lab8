@@ -65,9 +65,8 @@ public class Driver
     public void testLocation()
     {
         Assert.assertEquals("Location enum values incorrect. ", Location.KITCHEN, Location.valueOf("KITCHEN"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.CONSERVATORY,
-                Location.valueOf("CONSERVATORY"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.DINING_ROOM, Location.valueOf("DININGROOM"));
+        Assert.assertEquals("Location enum values incorrect. ", Location.CONSERVATORY, Location.valueOf("CONSERVATORY"));
+        Assert.assertEquals("Location enum values incorrect. ", Location.DINING_ROOM, Location.valueOf("DINING_ROOM"));
         Assert.assertEquals("Location enum values incorrect. ", Location.BALLROOM, Location.valueOf("BALLROOM"));
         Assert.assertEquals("Location enum values incorrect. ", Location.STUDY, Location.valueOf("STUDY"));
         Assert.assertEquals("Location enum values incorrect. ", Location.HALL, Location.valueOf("HALL"));
@@ -143,6 +142,8 @@ public class Driver
         GamePiece prior2 = GamePiece.BLUE_RACER;
         
         Assert.assertEquals("Wrong game piece moving first", prior2, gp.movesFirst(prior10, prior2));
+        Assert.assertEquals("Wrong game piece moving first", prior2, gp.movesFirst(prior2, prior10));
+        
         
     }
 
