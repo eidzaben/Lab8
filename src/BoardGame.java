@@ -43,9 +43,33 @@ public class BoardGame {
     }
     
     public String[] moveTwoPlayers(String[] playerNames , Location[] newLocations ) {
-     GamePiece first = movesFirst(PlayerPieces.get(playerNames[0]),PlayerPieces.get(playerNames[1]));
-              if (first)
-    }
+    // GamePiece first = new GamePiece();
+      //       first = first.movesFirst(a, b)movesFirst(PlayerPieces.get(playerNames[0]),PlayerPieces.get(playerNames[1]));
+        //      if (first)
+        GamePiece a = null;
+        GamePiece b = null;
+                  for (String players : PlayerPieces.keySet()) {
+                      if(players.equalsIgnoreCase(playerNames[0])) {
+                          a = PlayerPieces.get(players);
+                      }
+                      if(players.equalsIgnoreCase(playerNames[1])) {
+                          b = PlayerPieces.get(players);
+                       }
+                      
+                  }
+              
+                 GamePiece first =  PlayerPieces.get(playerNames[0]).movesFirst(a,b);
+                 if (!first.toString().equals(PlayerPieces.get(playerNames[0]).toString())) {
+                     String temp = playerNames[0];
+                     playerNames[0] = playerNames[1];
+                     playerNames[1] = temp;
+                     Location tempLocation = newLocations[0];
+                     newLocations[0] = newLocations[1];
+                     newLocations[1] = tempLocation;
+                     
+                 }
+                  return playerNames;
+     }
     
     public Location getPlayersLocation(String player) {
        return PlayerLocations.get(player);
@@ -62,6 +86,7 @@ public class BoardGame {
         }
         return players;
     }
+    
     //Still dont know how to retrieve keys using value
     //UPDATE, Possibly correct, needs testing.
     public ArrayList<GamePiece> getGamePiecesAtLocation(Location loc) {
