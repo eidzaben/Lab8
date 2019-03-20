@@ -17,6 +17,7 @@ public class BoardGame {
         if (PlayerLocations.containsValue(initialLocation)) {
             return false;
         } else {
+            PlayerPieces.put(playerName, gamePiece);
             PlayerLocations.put(playerName, initialLocation);
             return true;
         }
