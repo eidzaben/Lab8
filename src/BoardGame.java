@@ -14,7 +14,7 @@ public class BoardGame {
     }
     
     public boolean addPlayer(String playerName, GamePiece gamePiece, Location initialLocation) {
-        if (PlayerLocations.containsValue(initialLocation)) {
+        if (PlayerPieces.containsValue(gamePiece)) {
             return false;
         } else {
             PlayerPieces.put(playerName, gamePiece);
