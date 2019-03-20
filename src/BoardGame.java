@@ -82,7 +82,12 @@ public class BoardGame {
         for (Location l : PlayerLocations.values()) {
             if (l.equals(loc)) {
                 //FIX THIS LINE
-                players.add(PlayerLocations.keySet().toString());
+                for(String p : PlayerLocations.keySet()) {
+                    if(PlayerLocations.get(p).equals(loc)) {
+                        players.add(p);
+                    }
+                }
+            //    players.add(PlayerLocations.keySet().toString());
             }
         }
         return players;
