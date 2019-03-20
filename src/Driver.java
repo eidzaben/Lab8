@@ -186,8 +186,16 @@ public class Driver
         ArrayList<String> expPlayers = new ArrayList<String>();
         expPlayers.add("Bob");
         expPlayers.add("Bill");
-     //   Assert.assertEquals("GetPlayersAtLocation incorrect", expPlayers.get(0), bg.getPlayersAtLocation(Location.HALL).get(0));
-     // Assert.assertEquals("GetPlayersAtLocation incorrect", expPlayers.get(1), bg.getPlayersAtLocation(Location.HALL).get(1));
+        Assert.assertEquals("GetPlayersAtLocation incorrect", expPlayers.get(0), bg.getPlayersAtLocation(Location.HALL).get(0));
+     Assert.assertEquals("GetPlayersAtLocation incorrect", expPlayers.get(1), bg.getPlayersAtLocation(Location.HALL).get(1));
+        
+        //GetGamePiecesAtLocation Test
+        ArrayList<GamePiece> expPieces = new ArrayList<GamePiece>();
+        expPieces.add(GamePiece.MAGENTA_RACER);
+        expPieces.add(GamePiece.RED_THIMBLE);
+        Assert.assertEquals("GetGamePiecesAtLocation incorrect", GamePiece.MAGENTA_RACER, bg.getGamePiecesAtLocation(Location.HALL).get(0));
+        Assert.assertEquals("GetGamePiecesAtLocation incorrect", GamePiece.RED_THIMBLE, bg.getGamePiecesAtLocation(Location.HALL).get(1));
+ 
         
         //GetPlayers test
         Assert.assertTrue(bg.getPlayers().contains("Bob"));
