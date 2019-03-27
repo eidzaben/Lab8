@@ -6,34 +6,34 @@ import java.util.Set;
 public class BoardGame
 {
     // Instance Variables
-    protected LinkedHashMap<String, GamePiece> PlayerPieces;
-    protected LinkedHashMap<String, Location> PlayerLocations;
+    protected LinkedHashMap<String, GamePiece> playerPieces;
+    protected LinkedHashMap<String, Location> playerLocations;
 
     // Constructor initiallizes variables
     public BoardGame()
     {
-        PlayerPieces = new LinkedHashMap<String, GamePiece>();
-        PlayerLocations = new LinkedHashMap<String, Location>();
+        playerPieces = new LinkedHashMap<String, GamePiece>();
+        playerLocations = new LinkedHashMap<String, Location>();
     }
 
     //Checks whether a player already has a certain gamePiece
     //If not, the player is added to the game and false is returned
     public boolean addPlayer(String playerName, GamePiece gamePiece, Location initialLocation)
     {
-        if (PlayerPieces.containsValue(gamePiece))
+        if (playerPieces.containsValue(gamePiece))
         {
             return false;
         } else
         {
-            PlayerPieces.put(playerName, gamePiece);
-            PlayerLocations.put(playerName, initialLocation);
+            playerPieces.put(playerName, gamePiece);
+            playerLocations.put(playerName, initialLocation);
             return true;
         }
     }
 
     public GamePiece getPlayerGamePiece(String playerName)
     {
-        return PlayerPieces.get(playerName);
+        return playerPieces.get(playerName);
     }
 
     // Uses a for loop that cycles through Players
@@ -41,9 +41,9 @@ public class BoardGame
     // parameter
     public String getPlayerWithGamePiece(GamePiece gamePiece)
     {
-        for (String name : PlayerPieces.keySet())
+        for (String name : playerPieces.keySet())
         {
-            if (PlayerPieces.get(name).toString().equals(gamePiece.toString()))
+            if (playerPieces.get(name).toString().equals(gamePiece.toString()))
             {
                 return name;
             }
@@ -55,7 +55,7 @@ public class BoardGame
     // Changes the players location
     public void movePlayer(String playerName, Location newLocation)
     {
-        PlayerLocations.put(playerName, newLocation);
+        playerLocations.put(playerName, newLocation);
     }
 
     // Finds which game piece should move first by calling the movesFirst method
@@ -63,12 +63,12 @@ public class BoardGame
     public String[] moveTwoPlayers(String[] playerNames, Location[] newLocations)
     {
   
-        GamePiece a = PlayerPieces.get(playerNames[0]);
-        GamePiece b = PlayerPieces.get(playerNames[1]);
+        GamePiece a = playerPieces.get(playerNames[0]);
+        GamePiece b = playerPieces.get(playerNames[1]);
       
 
-        GamePiece first = PlayerPieces.get(playerNames[0]).movesFirst(a, b);
-        if (!first.toString().equals(PlayerPieces.get(playerNames[0]).toString()))
+        GamePiece first = GamePiece.movesFirst(a,b);
+        if (!first.toString().equals(playerPieces.get(playerNames[0]).toString()))
         {
             String temp = playerNames[0];
             playerNames[0] = playerNames[1];
@@ -84,7 +84,7 @@ public class BoardGame
     // Returns the location of a given player
     public Location getPlayersLocation(String player)
     {
-        return PlayerLocations.get(player);
+        return playerLocations.get(player);
     }
 
     /*
@@ -94,20 +94,30 @@ public class BoardGame
     public ArrayList<String> getPlayersAtLocation(Location loc)
     {
         ArrayList<String> players = new ArrayList<String>();
-        for (Location l : PlayerLocations.values())
+        
+        for (String p : playerLocations.keySet())
+        {
+            if (playerLocations.get(p).equals(loc))
+            {
+                players.add(p);
+            }
+        }
+       /* 
+        for (Location l : playerLocations.values())
         {
             if (l.equals(loc))
             {
-                for (String p : PlayerLocations.keySet())
+                for (String p : playerLocations.keySet())
                 {
-                    if (PlayerLocations.get(p).equals(loc))
+                    if (playerLocations.get(p).equals(loc))
                     {
                         players.add(p);
                     }
                 }
-                // players.add(PlayerLocations.keySet().toString());
+                // players.add(playerLocations.keySet().toString());
             }
         }
+        */
         return players;
     }
 
@@ -119,11 +129,11 @@ public class BoardGame
     public ArrayList<GamePiece> getGamePiecesAtLocation(Location loc)
     {
         ArrayList<GamePiece> gp = new ArrayList<GamePiece>();
-        for (String name : PlayerLocations.keySet())
+        for (String name : playerLocations.keySet())
         {
-            if (PlayerLocations.get(name).toString().equals(loc.toString()))
+            if (playerLocations.get(name).toString().equals(loc.toString()))
             {
-                gp.add(PlayerPieces.get(name));
+                gp.add(playerPieces.get(name));
             }
         }
         return gp;
@@ -134,7 +144,7 @@ public class BoardGame
     public Set<String> getPlayers()
     {
         Set<String> players = new HashSet<String>();
-        for (String playa : PlayerPieces.keySet())
+        for (String playa : playerPieces.keySet())
         {
             players.add(playa);
         }
@@ -145,7 +155,7 @@ public class BoardGame
     public Set<Location> getPlayerLocations()
     {
         Set<Location> locations = new HashSet<Location>();
-        for (Location l : PlayerLocations.values())
+        for (Location l : playerLocations.values())
         {
             locations.add(l);
         }
@@ -156,7 +166,7 @@ public class BoardGame
     public Set<GamePiece> getPlayerPieces()
     {
         Set<GamePiece> gp = new HashSet<GamePiece>();
-        for (GamePiece piece : PlayerPieces.values())
+        for (GamePiece piece : playerPieces.values())
         {
             gp.add(piece);
         }
