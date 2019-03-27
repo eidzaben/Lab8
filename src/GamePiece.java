@@ -34,7 +34,7 @@ public enum GamePiece
     }
 
     // Determines which piece moves first depending on each pieces priority
-    public GamePiece movesFirst(GamePiece a, GamePiece b)
+    public static GamePiece movesFirst(GamePiece a, GamePiece b)
     {
         if (a.priority > b.priority)
         {
