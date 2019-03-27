@@ -1,221 +1,108 @@
-import java.util.ArrayList;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-public class Driver
-{
-
-    /*
-     * TESTS CHECKLIST Shape Enum DONE 
-     * Location Enum DONE 
-     * Color enum DONE
-     * GamePieceAppearance DONE
-     * GamePiece 
-     * BoardGame
-     */
+ class Driver{
     public static void main(String[] args)
     {
-        GamePiece a = GamePiece.BLUE_BOOT;
-        System.out.println(a.toString());
+        //Initialization of variables
+        BoardGame game = new BoardGame();
+        String eid = "Eid Zaben";
+        String bob = "Bob";
+        String erika = "Erika";
+        String moe = "Moe";
+        
+        //Adding players to the game
+        game.addPlayer(moe, GamePiece.RED_RACER, Location.BILLIARD_ROOM);
+        game.addPlayer(bob, GamePiece.BLUE_RACER, Location.LOUNGE);
+        game.addPlayer(eid,GamePiece.RED_THIMBLE, Location.STUDY);
+        game.addPlayer(erika, GamePiece.BLUE_BOOT, Location.KITCHEN);
+
+        //Initial set of players
+        String pageOutput = "Players List:\n";
+        for (String plyr : game.getPlayers()) {
+        pageOutput += plyr + "\n";
         }
 
-    @Test
-    public void testColorValues()
-    {
-        Color col = null;
-        // RED:
-        col = Color.RED;
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getR());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getG());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getB());
-
-        // GREEN:
-        col = Color.GREEN;
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getR());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getG());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getB());
-
-        // BLUE:
-        col = Color.BLUE;
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getR());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getG());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getB());
-
-        // CYAN:
-        col = Color.CYAN;
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getR());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getG());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getB());
-
-        // MAGENTA:
-        col = Color.MAGENTA;
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getR());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getG());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getB());
-
-        // YELLOW:
-        col = Color.YELLOW;
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getR());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 255, col.getG());
-        Assert.assertEquals(" Incorrect  rgb  value  in  color  " + col.name(), 0, col.getB());
-
-    }
-
-    // Location Enum test cases
-    @Test
-    public void testLocation()
-    {
-        Assert.assertEquals("Location enum values incorrect. ", Location.KITCHEN, Location.valueOf("KITCHEN"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.CONSERVATORY, Location.valueOf("CONSERVATORY"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.DINING_ROOM, Location.valueOf("DINING_ROOM"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.BALLROOM, Location.valueOf("BALLROOM"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.STUDY, Location.valueOf("STUDY"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.HALL, Location.valueOf("HALL"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.LOUNGE, Location.valueOf("LOUNGE"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.LIBRARY, Location.valueOf("LIBRARY"));
-        Assert.assertEquals("Location enum values incorrect. ", Location.BILLIARD_ROOM,
-                Location.valueOf("BILLIARD_ROOM"));
-    }
-
-    @Test
-    public void testShapeToString()
-    {
-        Assert.assertEquals("Shape toString incorrect . ", "thimble", Shape.THIMBLE.toString());
-        Assert.assertEquals("Shape toString incorrect . ", "boot", Shape.BOOT.toString());
-        Assert.assertEquals("Shape toString incorrect . ", "racecar", Shape.RACECAR.toString());
-    }
-
-    @Test
-    public void testGamePieceAppearance()
-    {
-        GamePieceAppearance ex = new GamePieceAppearance(Color.RED, Shape.THIMBLE);
-        Assert.assertEquals("GPA getColor incorrect", ex.getColor(), Color.RED);
-        Assert.assertEquals("GPA getShape incorrect", ex.getShape(), Shape.THIMBLE);
-    }
-    
-    @Test
-    public void testGamePiece() {
-        GamePiece gp = null;
-        gp = GamePiece.BLUE_BOOT;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.BLUE, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.BOOT, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "BLUE_BOOT: a BLUE boot with priority 5", gp.toString());
-       
-        gp = GamePiece.RED_RACER;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.RED, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.RACECAR, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "RED_RACER: a RED racecar with priority 0", gp.toString());
-     
-        gp = GamePiece.BLUE_RACER;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.BLUE, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.RACECAR, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "BLUE_RACER: a BLUE racecar with priority 2", gp.toString());
+        //Each players piece
+        String playerPieces = "Player Pieces: ";
+        for (String pp : game.getPlayers()) {
+            GamePiece a = game.getPlayerGamePiece(pp);
+            playerPieces += "" +pp+ " has piece: " + a + "\n";
+        }
         
-        gp = GamePiece.MAGENTA_RACER;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.MAGENTA, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.RACECAR, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "MAGENTA_RACER: a MAGENTA racecar with priority 1", gp.toString());
-        
-        gp = GamePiece.RED_THIMBLE;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.RED, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.THIMBLE, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "RED_THIMBLE: a RED thimble with priority 10", gp.toString());
-        
-        gp = GamePiece.GREEN_BOOT;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.GREEN, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.BOOT, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "GREEN_BOOT: a GREEN boot with priority 8", gp.toString());
-       
-        gp = GamePiece.YELLOW_BOOT;
-        Assert.assertEquals("GamePiece color incorrect" + gp.name(), Color.YELLOW, gp.getColor());
-        Assert.assertEquals("GamePiece shape incorrect" + gp.name(), Shape.BOOT, gp.getShape());
-        //Expected toString might be incorrect
-        Assert.assertEquals("GamePiece toString incorrect" + gp.name(), "YELLOW_BOOT: a YELLOW boot with priority 7", gp.toString());
-       
-        //Testing movesFirst method
-        GamePiece prior10 = GamePiece.RED_THIMBLE;
-        GamePiece prior2 = GamePiece.BLUE_RACER;
-        
-        Assert.assertEquals("Wrong game piece moving first", prior2, gp.movesFirst(prior10, prior2));
-        Assert.assertEquals("Wrong game piece moving first", prior2, gp.movesFirst(prior2, prior10));
-        
-        
+        //Each players location
+        String playerLocations = "Player Locations: ";
+        for (String pl : game.getPlayers()){
+            Location l = game.getPlayersLocation(pl);
+            playerLocations += "" + pl + " is at location: " + l.toString().toLowerCase() + "\n";
+        }
+
+        /*
+         * Four moves in order depending on priority
+         */
+        String firstMove = "Moe gets to move first due to priority ";
+        firstMove +="" + "He moved from " + game.getPlayersLocation(moe).toString().toLowerCase() + " to ";
+        game.movePlayer(moe,Location.HALL);
+        firstMove += game.getPlayersLocation(moe).toString().toLowerCase() + "";
+
+        String secondMove = "Bob gets to move second due to priority ";
+        secondMove +="" + "He moved from " + game.getPlayersLocation(bob).toString().toLowerCase() + " to ";
+        game.movePlayer(bob,Location.LIBRARY);
+        secondMove += game.getPlayersLocation(bob).toString().toLowerCase() + "";
+
+        String thirdMove = "Erika gets to move third due to priority ";
+        thirdMove +="" + "She moved from " + game.getPlayersLocation(erika).toString().toLowerCase() + " to ";
+        game.movePlayer(erika,Location.BILLIARD_ROOM);
+        thirdMove += game.getPlayersLocation(erika).toString().toLowerCase() + "";
+
+        String fourthMove = "Eid Zaben has to move last due to priority ";
+        fourthMove +="" + "He moved from " + game.getPlayersLocation(eid).toString().toLowerCase() + " to ";
+        game.movePlayer(eid,Location.LOUNGE);
+        fourthMove += game.getPlayersLocation(eid).toString().toLowerCase() + "\n";
+
+        //Locations after players moved
+        String updatedLocations = "The updated player locations are: \n";
+        for (String ul : game.getPlayers()) {
+            Location newL = game.getPlayersLocation(ul);
+            updatedLocations += "" + ul + " is now at location: " + newL.toString().toLowerCase() + "\n";
+        }
+
+        //Situation if two players try to move at the same time
+        String ohNo = "Oh no Erika and Moe want to move at the same time! We need to use the moveTwoPlayers method to solve this. ";
+        String[] twoNames = {"Moe", "Erika"};
+        Location[] twoLocations = {Location.LIBRARY, Location.LOUNGE};
+        String[] order = game.moveTwoPlayers(twoNames, twoLocations);
+        game.movePlayer(moe,Location.LIBRARY);
+        game.movePlayer(erika,Location.LOUNGE);
+        String solution = "\nDue to priority, " + order[0] + " moves first, and " + order[1] + " moves next";
+        String newLocs = "Moe is moving to " + twoLocations[0].toString().toLowerCase() + " and Erika is moving to " + twoLocations[1].toString().toLowerCase() + "";
+
+        //Final location of players
+        String finalLocations = "The Final locations of the players are:\n";
+        for (String ul : game.getPlayers()) {
+            Location newL = game.getPlayersLocation(ul);
+            finalLocations += "" + ul + " is now at location: " + newL.toString().toLowerCase() + "";
+        }
+
+        //Printing everything out
+        System.out.println(pageOutput);
+        System.out.println(playerPieces);
+        System.out.println(playerLocations);
+        System.out.println(firstMove);
+        System.out.println(secondMove);
+        System.out.println(thirdMove);
+        System.out.println(fourthMove);
+        System.out.println(updatedLocations);
+        System.out.println(ohNo);
+        System.out.println(solution);
+        System.out.println(newLocs);
+        System.out.println(finalLocations);
+
+
+
+
+
     }
     
-    @Test
-    public void testBoardGame() {
-        //AddPlayer test
-        BoardGame bg = new BoardGame();
-        
-      bg.addPlayer("Paul", GamePiece.BLUE_BOOT, Location.BALLROOM);
-        Assert.assertEquals("AddPlayer method returned incorrect value", true, bg.addPlayer("Harry", GamePiece.BLUE_RACER, Location.BALLROOM));
-        Assert.assertEquals("AddPlayer method returned incorrect value", false, bg.addPlayer("Harry", GamePiece.BLUE_BOOT, Location.BILLIARD_ROOM));
- 
-        //GetPlayerGamePiece test
-       Assert.assertEquals("GetPlayerGamePiece incorrect", GamePiece.BLUE_BOOT, bg.getPlayerGamePiece("Paul"));
-        
-        //GetPlayerWithGamePiece test
-        Assert.assertEquals("GetPlayerWithGamePiece incorrect", "Paul", bg.getPlayerWithGamePiece(GamePiece.BLUE_BOOT));
-        Assert.assertEquals("GetPlayerWithGamePiece incorrect", null, bg.getPlayerWithGamePiece(GamePiece.RED_RACER));
-
-        //MovePlayer and getPlayersLocation Test
-        bg.movePlayer("Paul", Location.BILLIARD_ROOM);
-        Assert.assertEquals("MovePlayer incorrect", Location.BILLIARD_ROOM, bg.getPlayersLocation("Paul"));
-        
-        //Move Two Players Test (Doesn't need rearrangement)
-      bg.addPlayer("Ralph", GamePiece.GREEN_BOOT, Location.DINING_ROOM);
-        String[] names = {"Paul", "Ralph"};
-        Location[] locations = {Location.BALLROOM, Location.DINING_ROOM};
-        Assert.assertArrayEquals("MoveTwoPlayers incorrect", names, bg.moveTwoPlayers(names, locations));
-       
-        //Move Two Players Test (Needs rearrangement)
-        String[] names2 = {"Ralph","Paul"};
-        Location[] locations2 = {Location.DINING_ROOM, Location.BALLROOM};
-        Assert.assertArrayEquals("MoveTwoPlayers Incorrect", names, bg.moveTwoPlayers(names2, locations2));
-        
-        //GetPlayersAtLocation test *NOT PASSING*
-      bg.addPlayer("Bob", GamePiece.MAGENTA_RACER, Location.HALL);
-      bg.addPlayer("Bill", GamePiece.RED_THIMBLE, Location.HALL);
-        ArrayList<String> expPlayers = new ArrayList<String>();
-        expPlayers.add("Bob");
-        expPlayers.add("Bill");
-        Assert.assertEquals("GetPlayersAtLocation incorrect", expPlayers.get(0), bg.getPlayersAtLocation(Location.HALL).get(0));
-     Assert.assertEquals("GetPlayersAtLocation incorrect", expPlayers.get(1), bg.getPlayersAtLocation(Location.HALL).get(1));
-        
-        //GetGamePiecesAtLocation Test
-        ArrayList<GamePiece> expPieces = new ArrayList<GamePiece>();
-        expPieces.add(GamePiece.MAGENTA_RACER);
-        expPieces.add(GamePiece.RED_THIMBLE);
-        Assert.assertEquals("GetGamePiecesAtLocation incorrect", GamePiece.MAGENTA_RACER, bg.getGamePiecesAtLocation(Location.HALL).get(0));
-        Assert.assertEquals("GetGamePiecesAtLocation incorrect", GamePiece.RED_THIMBLE, bg.getGamePiecesAtLocation(Location.HALL).get(1));
- 
-        
-        //GetPlayers test
-        Assert.assertTrue(bg.getPlayers().contains("Bob"));
-        Assert.assertTrue(bg.getPlayers().contains("Paul"));
-        Assert.assertTrue(bg.getPlayers().contains("Ralph"));
-        Assert.assertTrue(bg.getPlayers().contains("Bill"));
-
-        //GetPlayerLocations
-        Assert.assertTrue(bg.getPlayerLocations().contains(Location.HALL));
-        Assert.assertTrue(bg.getPlayerLocations().contains(Location.DINING_ROOM));
-        Assert.assertTrue(bg.getPlayerLocations().contains(Location.BALLROOM));
-
-        
-        //GetPlayerPieces
-        Assert.assertTrue(bg.getPlayerPieces().contains(GamePiece.MAGENTA_RACER));
-        Assert.assertTrue(bg.getPlayerPieces().contains(GamePiece.RED_THIMBLE));
-        Assert.assertTrue(bg.getPlayerPieces().contains(GamePiece.GREEN_BOOT));
-        Assert.assertTrue(bg.getPlayerPieces().contains(GamePiece.BLUE_BOOT));
-
-        
-    }
-
 }
+
+
+
+
