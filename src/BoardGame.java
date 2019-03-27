@@ -102,22 +102,7 @@ public class BoardGame
                 players.add(p);
             }
         }
-       /* 
-        for (Location l : playerLocations.values())
-        {
-            if (l.equals(loc))
-            {
-                for (String p : playerLocations.keySet())
-                {
-                    if (playerLocations.get(p).equals(loc))
-                    {
-                        players.add(p);
-                    }
-                }
-                // players.add(playerLocations.keySet().toString());
-            }
-        }
-        */
+     
         return players;
     }
 
